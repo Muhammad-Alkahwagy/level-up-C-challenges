@@ -1,11 +1,30 @@
 #include <stdio.h>
+#include <string.h>
 
 char *ordinal(int v)
 {
-	/*
-	   - create this function
-	   - this code won't run with out it!
-	 */
+	int remainder = v%10;
+	char* suffix;
+	char* st = "st";
+	char* nd = "nd";
+	char* rd = "rd";
+	char* th = "th";
+
+	switch (remainder)
+	{
+		case 1:	  suffix = st;
+							if(v == 11){suffix = th;} //exception
+							break;
+		case 2:	  suffix = nd;
+							if(v == 12){suffix = th;} //exception
+							break;
+		case 3:	  suffix = rd;
+							if(v == 13){suffix = th;}	//exception
+							break;
+		default:	suffix = th; 
+							break;
+	}
+	return suffix;
 }
 
 int main()
